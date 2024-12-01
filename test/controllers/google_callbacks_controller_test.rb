@@ -18,7 +18,7 @@ class GoogleCallbacksControllerTest < ActionDispatch::IntegrationTest
 
   test "auth and save access token" do
     get "/auth/google_oauth2/callback"
-    assert_response :success
+    assert_response :redirect
 
     user = User.find_by(uid: "my_uid")
     assert_equal "test_token", user.google_access_token.access_token
