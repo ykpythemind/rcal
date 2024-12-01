@@ -71,4 +71,7 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.hosts << /.*\.ngrok-free\.app/
+
+  config.x.google_client_id = "372583231215-fpf69265tjpg78gm0nqrlo019205forj.apps.googleusercontent.com"
+  config.x.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET")
 end

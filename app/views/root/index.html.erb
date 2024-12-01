@@ -1,2 +1,6 @@
 
 <h1>rcal</h1>
+
+<%= form_with url: '/auth/google_oauth2', local: true do |f| %>
+  <%= f.submit 'Sign in with Google' %>
+<% end %>
