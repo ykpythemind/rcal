@@ -4,18 +4,14 @@ class Webhook::CalendarEventsController < ApplicationController
   def create
     puts params
     channel_id = request.headers["X-Goog-Channel-ID"]
-    channel_resource_id = request.headers["X-Goog-Resource-ID"]
+    # channel_resource_id = request.headers["X-Goog-Resource-ID"]
 
-    puts(channel_id)
-    puts(channel_resource_id)
-
-    request.headers.each do |key, value|
-      puts "#{key}: #{value}"
-      if key.start_with?("X-Goog")
-        puts("#{key}: #{value}")
-      end
+    channel = GoogleCalendarChannel.find_by(channel_id: channel_id)
+    if channel
+      SyncGoogleCalendarEventsJob.perform_later(channel)
+      head :ok
+    else
+      head :not_found
     end
-
-    head :ok
   end
 end

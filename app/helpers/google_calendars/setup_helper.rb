@@ -1,0 +1,2 @@
+module GoogleCalendars::SetupHelper
+end

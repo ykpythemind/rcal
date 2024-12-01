@@ -11,5 +11,7 @@ module Rcal
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.time_zone = "Asia/Tokyo"
+
+    config.x.host = ENV["HOST"] || "localhost:3000"
   end
 end

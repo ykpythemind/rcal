@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_01_102431) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_132912) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -21,6 +21,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_102431) do
     t.index ["user_id"], name: "index_google_access_tokens_on_user_id", unique: true
   end
 
+  create_table "google_calendar_channels", force: :cascade do |t|
+    t.string "channel_id"
+    t.integer "user_id", null: false
+    t.string "calendar_id", null: false
+    t.string "next_sync_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_google_calendar_channels_on_calendar_id", unique: true
+    t.index ["channel_id"], name: "index_google_calendar_channels_on_channel_id", unique: true
+    t.index ["user_id"], name: "index_google_calendar_channels_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uid", null: false
     t.datetime "created_at", null: false
@@ -29,4 +42,5 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_102431) do
   end
 
   add_foreign_key "google_access_tokens", "users"
+  add_foreign_key "google_calendar_channels", "users"
 end
