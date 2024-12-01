@@ -54,10 +54,4 @@ class GoogleCalendarEvent < ApplicationRecord
 
     update!(start_at: s, end_at: e)
   end
-
-  def handle
-    # todo handling
-
-    save!
-  end
 end
