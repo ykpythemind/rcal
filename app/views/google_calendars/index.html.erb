@@ -1,5 +1,12 @@
 <h3>Choose Calendar</h3>
 
 <ul>
-
+  <% @calendars.each do |calendar| %>
+    <li>
+      <%= form_with url: "/google_calendars/setup", local: true do |f| %>
+        <%= f.hidden_field :calendar_id, value: calendar.id %>
+        <%= f.submit calendar.summary %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
