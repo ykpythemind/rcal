@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  google_calendar: one
+  summary: MyString
+  schedule_at: 2024-12-01 23:34:29
+  data: 
+
+two:
+  google_calendar: two
+  summary: MyString
+  schedule_at: 2024-12-01 23:34:29
+  data: 

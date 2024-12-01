@@ -6,9 +6,9 @@ class Webhook::CalendarEventsController < ApplicationController
     channel_id = request.headers["X-Goog-Channel-ID"]
     # channel_resource_id = request.headers["X-Goog-Resource-ID"]
 
-    channel = GoogleCalendarChannel.find_by(channel_id: channel_id)
-    if channel
-      SyncGoogleCalendarEventsJob.perform_later(channel)
+    calendar = GoogleCalendar.find_by(channel_id: channel_id)
+    if calendar
+      SyncGoogleCalendarEventsJob.perform_later(calendar)
       head :ok
     else
       head :not_found

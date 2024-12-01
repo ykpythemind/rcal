@@ -2,17 +2,21 @@ class GoogleCalendars::SetupController < ApplicationController
   before_action :require_login
 
   def create
-    calendar_channel = current_user.google_calendar_channels.find_or_initialize_by(calendar_id: params[:calendar_id])
+    calendar = current_user.google_calendars.find_or_initialize_by(calendar_id: params[:calendar_id])
 
     access_token = current_user.google_access_token.prepare
 
-    if calendar_channel.new_record?
-      calendar_channel.start_watch(access_token)
+    if calendar.new_record?
+      calendar.start_watch(access_token)
 
-      # watch eventするだけで初回のイベントが飛んでくるので、SyncGoogleCalendarEventsJob.perform_later(calendar_channel)は不要
+      # watch eventするだけで初回のイベントが飛んでくるので、SyncGoogleCalendarEventsJob.perform_later(calendar)は不要
     else
-      # ... maybe recreate channel
-      SyncGoogleCalendarEventsJob.perform_later(calendar_channel)
+      # 新規にチャンネルをつくって古いのを消す
+      new_calendar = calendar.dup
+      calendar.destroy
+
+      new_calendar.channel_id = SecureRandom.uuid
+      new_calendar.start_watch(access_token)
     end
 
     redirect_to root_path

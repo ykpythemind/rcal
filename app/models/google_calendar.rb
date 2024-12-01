@@ -1,5 +1,7 @@
-class GoogleCalendarChannel < ApplicationRecord
+class GoogleCalendar < ApplicationRecord
   after_destroy_commit :cleanup_watching_channel
+
+  has_many :google_calendar_events, dependent: :destroy
 
   belongs_to :user
 
