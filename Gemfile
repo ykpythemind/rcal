@@ -38,6 +38,8 @@ gem "thruster", require: false
 gem "omniauth"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-google-oauth2"
+gem "google-apis-calendar_v3", require: "google/apis/calendar_v3"
+gem "google-apis-oauth2_v2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
