@@ -1,13 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   user: one
-#   access_token: MyString
-#   refresh_token: MyString
-#   expires_at: 2024-12-01 19:24:31
-
-# two:
-#   user: two
-#   access_token: MyString
-#   refresh_token: MyString
-#   expires_at: 2024-12-01 19:24:31
+one:
+  user: one
+  access_token: my_access_token
+  refresh_token: my_refresh_token
+  expires_at: 2030-12-01 19:24:31
