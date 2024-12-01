@@ -1,4 +1,7 @@
-# production:
+production:
+  schedule_task:
+    command: "Scheduler.call"
+    schedule: every 5 minutes
 #   periodic_cleanup:
 #     class: CleanSoftDeletedRecordsJob
 #     queue: background
