@@ -22,6 +22,12 @@
   </head>
 
   <body>
+    <h1><a href="/">rcal</a></h1>
+
+    <%- if flash[:alert] %>
+      <div class="alert alert-danger" style="color: red;"><%= flash[:alert] %></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

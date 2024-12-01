@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/auth/google_oauth2/callback" => "google_callbacks#create"
+
+  get "google_calendars" => "google_calendars#index"
+
+  post "/logout" => "sessions#destroy"
 end

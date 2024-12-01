@@ -1,6 +1,17 @@
+<% if current_user %>
+  <div style='border-radius: 3px; border: 1px solid gray; padding: 15px;'>
+    <p>Welcome, <%= current_user.uid %>!</p>
 
-<h1>rcal</h1>
+    <ul>
+      <li><%= link_to "カレンダー一覧", "/google_calendars" %></li>
+    </ul>
 
-<%= form_with url: '/auth/google_oauth2', local: true do |f| %>
-  <%= f.submit 'Sign in with Google' %>
+    <%= form_with url: '/logout', local: true do |f| %>
+      <%= f.submit 'Logout' %>
+    <% end %>
+  </div>
+<% else %>
+  <%= form_with url: '/auth/google_oauth2', local: true do |f| %>
+    <%= f.submit 'Signup or Signin' %>
+  <% end %>
 <% end %>
