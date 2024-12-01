@@ -20,7 +20,7 @@ class GoogleCalendar < ApplicationRecord
   end
 
   def webhook_calendar_events_url
-    "#{Rails.application.config.x.host}/webhook/calendar_events"
+    "https://#{Rails.application.config.x.host}/webhook/calendar_events"
   end
 
   private
