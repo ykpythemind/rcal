@@ -1,6 +1,6 @@
 <% if current_user %>
   <div style='border-radius: 3px; border: 1px solid gray; padding: 15px;'>
-    <p>Welcome, <%= current_user.uid %>!</p>
+    <p>Welcome, <%= current_user.nickname %>!</p>
 
     <ul>
       <li><%= link_to "カレンダー一覧", "/google_calendars" %></li>

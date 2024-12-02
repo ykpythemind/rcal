@@ -5,6 +5,10 @@ class GoogleCallbacksControllerTest < ActionDispatch::IntegrationTest
     auth_hash = {
       provider: "google_oauth2",
       uid: "my_uid",
+      info: {
+        email: "test@example.com",
+        name: "test user"
+      },
       credentials: {
         token: "test_token",
         refresh_token: "test_refresh_token",

@@ -14,7 +14,11 @@ class GoogleCalendar < ApplicationRecord
       id: self.channel_id, type: "web_hook", address: webhook_calendar_events_url
     )
 
-    service.watch_event(calendar_id, channel_param, show_deleted: true)
+    ret = service.watch_event(calendar_id, channel_param, show_deleted: true)
+
+    # FIXME: expires_atを保存する
+    # FIXME: resource_id を保存する (calendar_idではないっぽい？)
+    puts ret
 
     save!
   end

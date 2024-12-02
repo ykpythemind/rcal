@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_01_143429) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_02_152957) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_143429) do
     t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "summary"
     t.index ["calendar_id"], name: "index_google_calendars_on_calendar_id", unique: true
     t.index ["channel_id"], name: "index_google_calendars_on_channel_id", unique: true
     t.index ["user_id"], name: "index_google_calendars_on_user_id"
@@ -51,6 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_143429) do
     t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 

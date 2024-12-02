@@ -6,6 +6,8 @@ class GoogleCalendars::SetupController < ApplicationController
 
     access_token = current_user.google_access_token.prepare
 
+    # TODO: summaryの取得
+
     if calendar.new_record?
       calendar.start_watch(access_token)
 

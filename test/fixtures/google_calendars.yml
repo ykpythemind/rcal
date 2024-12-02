@@ -1,11 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   channel_id: MyString
-#   user: one
-#   next_sync_token: MyString
-#   expires_at: 2024-12-01 22:29:12
-#   calendar_id: MyString
+first_time_calendar:
+  summary: calendar 1
+  channel_id: first_time_channel_id
+  user: one
+  next_sync_token:
+  expires_at: 2030-12-01 00:00:00
+  calendar_id: dummy_calendar_id
 
 # two:
 #   channel_id: MyString
