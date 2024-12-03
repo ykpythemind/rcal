@@ -185,6 +185,9 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.2)
+    minitest-power_assert (0.3.1)
+      minitest
+      power_assert (>= 1.1)
     msgpack (1.7.5)
     multi_json (1.15.0)
     multi_xml (0.7.1)
@@ -247,6 +250,7 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    power_assert (2.0.4)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -449,6 +453,7 @@ DEPENDENCIES
   google-apis-oauth2_v2
   jbuilder
   kamal
+  minitest-power_assert
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

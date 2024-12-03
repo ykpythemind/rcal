@@ -8,9 +8,9 @@ first_time_calendar:
   expires_at: 2030-12-01 00:00:00
   calendar_id: dummy_calendar_id
 
-# two:
-#   channel_id: MyString
-#   user: two
-#   next_sync_token: MyString
-#   expires_at: 2024-12-01 22:29:12
-#   calendar_id: MyString
+my_calendar:
+  channel_id: calendar_2
+  user: one
+  next_sync_token: token
+  expires_at: 2030-12-01 00:00:00
+  calendar_id: dummy_calendar_id2

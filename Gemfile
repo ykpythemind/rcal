@@ -62,4 +62,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webmock"
+  gem "minitest-power_assert"
 end
