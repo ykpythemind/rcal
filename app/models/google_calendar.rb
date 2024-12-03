@@ -18,6 +18,7 @@ class GoogleCalendar < ApplicationRecord
 
     # FIXME: expires_atを保存する
     # FIXME: resource_id を保存する (calendar_idではないっぽい？)
+    puts "start_watch"
     puts ret
 
     save!
