@@ -1,24 +1,27 @@
-# README
+# rcal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://rcal.ykpythemind.com/
 
-Things you may want to cover:
+- `rcal` はGoogleカレンダーと連携するタスク管理ツールです。
+- `r ` から始まるイベントを作ると、そのイベントを削除するまで延期され続けます。
+- リマインダーアプリなどを使い分けることができないズボラな人間にどうぞ
 
-* Ruby version
+## Setup
 
-* System dependencies
+```
+bin/setup --skip-server
+```
 
-* Configuration
+## Development
 
-* Database creation
+```
+bin/dev
+```
 
-* Database initialization
+### Environment Variables
 
-* How to run the test suite
+todo
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- GOOGLE_CLIENT_ID
+- GOOGLE_CLIENT_SECRET
+- HOST
