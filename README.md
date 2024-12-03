@@ -25,3 +25,4 @@ todo
 - GOOGLE_CLIENT_ID
 - GOOGLE_CLIENT_SECRET
 - HOST
+- RAILS_MASTER_KEY (for real production deploy)
