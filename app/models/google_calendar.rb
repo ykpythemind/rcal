@@ -16,10 +16,11 @@ class GoogleCalendar < ApplicationRecord
 
     ret = service.watch_event(calendar_id, channel_param, show_deleted: true)
 
-    # FIXME: expires_atを保存する
-    # FIXME: resource_id を保存する (calendar_idではないっぽい？)
-    puts "start_watch"
-    puts ret
+    Rails.logger.debug "start_watch"
+    Rails.logger.debug ret
+
+    self.calendar_resource_id = ret.resource_id
+    self.expires_at = Time.zone.at(ret.expiration.to_i / 1000)
 
     save!
   end
@@ -28,20 +29,14 @@ class GoogleCalendar < ApplicationRecord
     "https://#{Rails.application.config.x.host}/webhook/calendar_events"
   end
 
-  private
-
   def cleanup_watching_channel
-    # its not working
-    # <Google::Apis::ClientError: notFound: Channel 'c7fe2f16-0d4d-4b45-9479-d2184ca82ecb' not found for project '372583231215' status_code: 404 header
-    return unless ENV["CLEANUP"]
-
     token = user.google_access_token&.prepare
     return unless token
 
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = token
 
-    chan = Google::Apis::CalendarV3::Channel.new(id: channel_id, resource_id: calendar_id)
+    chan = Google::Apis::CalendarV3::Channel.new(id: channel_id, resource_id: calendar_resource_id)
 
     begin
       service.stop_channel(chan)
