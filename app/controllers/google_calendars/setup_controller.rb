@@ -11,7 +11,7 @@ class GoogleCalendars::SetupController < ApplicationController
     if calendar.new_record?
       calendar.start_watch(access_token)
 
-      # watch eventするだけで初回のイベントが飛んでくるので、SyncGoogleCalendarEventsJob.perform_later(calendar)は不要
+      SyncGoogleCalendarEventsJob.perform_later(calendar)
     else
       # 新規にチャンネルをつくって古いのを消す
       new_calendar = calendar.dup
@@ -19,6 +19,8 @@ class GoogleCalendars::SetupController < ApplicationController
 
       new_calendar.channel_id = SecureRandom.uuid
       new_calendar.start_watch(access_token)
+
+      SyncGoogleCalendarEventsJob.perform_later(calendar)
     end
 
     redirect_to root_path
