@@ -13,12 +13,9 @@ class GoogleCalendars::SetupController < ApplicationController
 
     if calendar.new_record?
       calendar.start_watch(access_token)
-
     else
       # 新規にチャンネルをつくって古いのを消す
-      calendar.stop_watching_channel
-      calendar.update!(channel_id: nil, channel_resource_id: nil, expires_at: nil, next_sync_token: nil)
-      calendar.start_watch(access_token)
+      calendar.refresh_watch(access_token)
     end
 
     redirect_to root_path

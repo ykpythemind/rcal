@@ -26,11 +26,18 @@ class GoogleCalendar < ApplicationRecord
 
     ActiveRecord.after_all_transactions_commit do
       SyncGoogleCalendarEventsJob.perform_later(self)
+      RefreshCalendarWatchJob.set(wait_until: expires_at - 30.minutes).perform_later(self)
     end
   end
 
   def webhook_calendar_events_url
     "https://#{Rails.application.config.x.host}/webhook/calendar_events"
+  end
+
+  def refresh_watch(access_token)
+    stop_watching_channel
+    update!(channel_id: nil, channel_resource_id: nil, expires_at: nil, next_sync_token: nil)
+    start_watch(access_token)
   end
 
   def stop_watching_channel
