@@ -6,21 +6,19 @@ class GoogleCalendars::SetupController < ApplicationController
 
     access_token = current_user.google_access_token.prepare
 
-    # TODO: summaryの取得
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = access_token
+    cal = service.get_calendar(calendar.calendar_id)
+    calendar.summary = cal.summary
 
     if calendar.new_record?
       calendar.start_watch(access_token)
 
-      SyncGoogleCalendarEventsJob.perform_later(calendar)
     else
       # 新規にチャンネルをつくって古いのを消す
-      new_calendar = calendar.dup
-      calendar.destroy
-
-      new_calendar.channel_id = SecureRandom.uuid
-      new_calendar.start_watch(access_token)
-
-      SyncGoogleCalendarEventsJob.perform_later(calendar)
+      calendar.stop_watching_channel
+      calendar.update!(channel_id: nil, channel_resource_id: nil, expires_at: nil, next_sync_token: nil)
+      calendar.start_watch(access_token)
     end
 
     redirect_to root_path

@@ -1,5 +1,5 @@
 class GoogleCalendar < ApplicationRecord
-  after_destroy_commit :cleanup_watching_channel
+  after_destroy_commit :stop_watching_channel
 
   has_many :google_calendar_events, dependent: :destroy
 
@@ -19,24 +19,28 @@ class GoogleCalendar < ApplicationRecord
     Rails.logger.debug "start_watch"
     Rails.logger.debug ret
 
-    self.calendar_resource_id = ret.resource_id
+    self.channel_resource_id = ret.resource_id
     self.expires_at = Time.zone.at(ret.expiration.to_i / 1000)
 
     save!
+
+    ActiveRecord.after_all_transactions_commit do
+      SyncGoogleCalendarEventsJob.perform_later(self)
+    end
   end
 
   def webhook_calendar_events_url
     "https://#{Rails.application.config.x.host}/webhook/calendar_events"
   end
 
-  def cleanup_watching_channel
+  def stop_watching_channel
     token = user.google_access_token&.prepare
     return unless token
 
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = token
 
-    chan = Google::Apis::CalendarV3::Channel.new(id: channel_id, resource_id: calendar_resource_id)
+    chan = Google::Apis::CalendarV3::Channel.new(id: channel_id, resource_id: channel_resource_id)
 
     begin
       service.stop_channel(chan)

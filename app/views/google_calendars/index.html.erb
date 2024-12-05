@@ -1,4 +1,12 @@
-<h3>Choose Calendar</h3>
+<h3>連携中カレンダー</h3>
+
+<ul>
+  <%- current_user.google_calendars.each do |calendar| %>
+    <li><%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %></li>
+  <% end %>
+</ul>
+
+<h3>連携する</h3>
 
 <ul>
   <% @calendars.each do |calendar| %>

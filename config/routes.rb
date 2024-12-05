@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   post "/google_calendars/setup" => "google_calendars/setup#create"
 
   post "/logout" => "sessions#destroy"
+
+  get "/terms" => "root#terms"
+  get "/privacy" => "root#privacy"
 end
