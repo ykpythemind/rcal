@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_02_152957) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_05_132047) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -30,8 +30,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_02_152957) do
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["event_id"], name: "index_google_calendar_events_on_event_id"
     t.index ["google_calendar_id"], name: "index_google_calendar_events_on_google_calendar_id"
+    t.index ["status"], name: "index_google_calendar_events_on_status"
   end
 
   create_table "google_calendars", force: :cascade do |t|
@@ -43,6 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_02_152957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "summary"
+    t.string "channel_resource_id"
     t.index ["calendar_id"], name: "index_google_calendars_on_calendar_id", unique: true
     t.index ["channel_id"], name: "index_google_calendars_on_channel_id", unique: true
     t.index ["user_id"], name: "index_google_calendars_on_user_id"

@@ -59,7 +59,7 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
 
         if event.status == "cancelled"
           if record.persisted?
-            record.destroy!
+            record.destroy! # TODO: status更新のみにする
           else
             # ignore
           end
@@ -69,6 +69,7 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
             end_at: event.end.date_time,
             summary: event.summary,
             data: event.to_h,
+            status: event.status,
           )
 
           record.save!
