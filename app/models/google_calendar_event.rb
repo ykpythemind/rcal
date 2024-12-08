@@ -8,8 +8,13 @@ class GoogleCalendarEvent < ApplicationRecord
   end
 
   def new_schedule
-    # now = Time.current
+    now = Time.current
     will_start_at = end_at + 2.hour # とりあえず2時間ずつ後ろにずらしていく
+
+    # 古すぎるイベントを拾ったとき
+    if will_start_at < now.beginning_of_day
+      will_start_at = now.change(hour: end_at.hour, minute: end_at.min) + 2.hour
+    end
 
     diff = (end_at - start_at).seconds
 
