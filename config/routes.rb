@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   get "/terms" => "root#terms"
   get "/privacy" => "root#privacy"
+
+  get "/users/delete" => "user_deletes#show"
+  post "/users/delete" => "user_deletes#create"
 end

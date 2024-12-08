@@ -1,0 +1,7 @@
+<h2>退会</h2>
+
+<p>すべての設定とデータを削除します。</p>
+
+<%= form_with url: '/users/delete', local: true do |f| %>
+  <%= f.submit '退会する', data: { confirm: "本当に退会しますか" }  %>
+<% end %>
