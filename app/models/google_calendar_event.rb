@@ -1,9 +1,11 @@
 class GoogleCalendarEvent < ApplicationRecord
   belongs_to :google_calendar
+  has_many :google_calendar_event_reschedules
 
-  scope :active, -> { where(start_at: Time.current...) }
+  scope :active, -> { where(status: "confirmed", start_at: Time.current.beginning_of_day...) }
 
-  MAGIC_TITLE = /^(r{1,})(\s|　)+/
+  MAGIC_TITLE = /^(r{1,})(\s|　|-|:|\+|=)+/
+  REPEAT_MARK = "🔄"
 
   def reschedule_target_title?
     summary.match?(MAGIC_TITLE)
@@ -33,6 +35,23 @@ class GoogleCalendarEvent < ApplicationRecord
     [ will_start_at, will_end_at ]
   end
 
+  def generate_next_summary
+    next_count = google_calendar_event_reschedules.count + 1
+
+    s = summary.gsub(/(🔄+)$/, "").strip # 繰り返しマークを消しておく
+
+    # 雑ロジック...
+    if next_count == 1
+      mark_count = 1
+    elsif next_count == 2
+      mark_count = 2
+    else
+      mark_count = 3
+    end
+
+    "#{s} #{REPEAT_MARK * mark_count}"
+  end
+
   def reschedule
     access_token = google_calendar.user.google_access_token&.prepare
     raise "No access token" unless access_token
@@ -41,8 +60,10 @@ class GoogleCalendarEvent < ApplicationRecord
     service.authorization = access_token
 
     s, e = new_schedule
+    next_summary = generate_next_summary
 
     new_event = Google::Apis::CalendarV3::Event.new(
+      summary: next_summary,
       start: Google::Apis::CalendarV3::EventDateTime.new(
         date_time: s.iso8601,
         time_zone: s.time_zone.name,
@@ -59,6 +80,9 @@ class GoogleCalendarEvent < ApplicationRecord
       new_event
     )
 
-    update!(start_at: s, end_at: e)
+    transaction do
+      update!(start_at: s, end_at: e, summary: next_summary)
+      google_calendar_event_reschedules.create!
+    end
   end
 end
