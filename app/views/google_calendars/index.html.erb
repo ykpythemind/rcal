@@ -1,28 +1,14 @@
-<h2 class="text-lg mb-5">設定中カレンダー</h2>
+<%= turbo_frame_tag "calendar-setup-list" do %>
+  <h3 class="my-5 text-lg">新規でカレンダーを設定する</h3>
 
-<%- if current_user.google_calendars.present? %>
-  <ul class="list-disc list-inside px-2">
-    <%- current_user.google_calendars.each do |calendar| %>
-      <li>
-        <span class="font-bold">
-          <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
-        </span>
+  <ul class="flex flex-col gap-3">
+    <% @calendars.each do |calendar| %>
+      <li class="">
+        <%= form_with url: "/google_calendars/setup" , data: { turbo: false } do |f| %>
+          <%= f.hidden_field :calendar_id, value: calendar.id %>
+          <%= f.submit calendar.summary, class: "btn-secondary cursor-pointer" %>
+        <% end %>
       </li>
     <% end %>
   </ul>
-<% else %>
-  <span class="text-gray-500">カレンダーが設定されていません</span>
 <% end %>
-
-<h3 class="my-5 text-lg">新規で設定する</h3>
-
-<ul class="flex flex-col gap-3">
-  <% @calendars.each do |calendar| %>
-    <li class="">
-      <%= form_with url: "/google_calendars/setup", local: true do |f| %>
-        <%= f.hidden_field :calendar_id, value: calendar.id %>
-        <%= f.submit calendar.summary, class: "btn-secondary cursor-pointer" %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>

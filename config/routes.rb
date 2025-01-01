@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :google_calendars do
-    get "setup/create"
-  end
   root "root#index"
 
   post "/webhook/calendar_events", to: "webhook/calendar_events#create"
@@ -12,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/google_calendars" => "google_calendars#index"
   post "/google_calendars/setup" => "google_calendars/setup#create"
+  get "/google_calendars/setup/new" => "google_calendars/setup#new"
 
   post "/logout" => "sessions#destroy"
 

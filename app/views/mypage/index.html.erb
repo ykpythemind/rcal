@@ -1,21 +1,38 @@
 <div>
-  <h2 class="text-lg">設定</h2>
+  <h2 class="text-lg">カレンダー設定</h2>
 
-  <ul class="list-disc list-inside p-2">
-    <li><%= link_to "カレンダー設定", "/google_calendars", class: "link" %></li>
-  </ul>
+  <%- if current_user.google_calendars.present? %>
+    <ul class="list-disc list-inside px-2 mt-3">
+      <%- current_user.google_calendars.each do |calendar| %>
+        <li>
+          <span class="font-bold">
+            <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span class="text-gray-500">カレンダーが設定されていません</span>
+  <% end %>
 
-  <h2 class="text-lg my-2">アカウント</h2>
-
-  <p><%= "#{current_user.nickname}" %><%= current_user.email ? "(#{current_user.email})" : nil %></p>
-
-  <div class="mt-5">
-    <%= link_to "退会", "/users/delete", class: "link" %>
+  <div class="mt-5 text-center">
+    <a href="/google_calendars/setup/new" class="btn-secondary cursor-pointer">新しく設定する</a>
   </div>
 
-  <div class="mt-5">
+  <h2 class="text-lg mb-2 mt-5">アカウント</h2>
+
+  <div class="flex">
+    <div><%= "#{current_user.nickname}" %><%= current_user.email ? "(#{current_user.email})" : nil %></div>
+
+    <div class="ml-auto">
+      <%= link_to "退会", "/users/delete", class: "link" %>
+    </div>
+  </div>
+
+
+  <div class="mt-5 text-center">
     <%= form_with url: '/logout', local: true do |f| %>
-      <%= f.submit 'ログアウト', class: 'btn-secondary cursor-pointer' %>
+      <%= f.submit 'ログアウト', class: 'btn-secondary cursor-pointer', data: { turbo_confirm: "ログアウトしますか？" } %>
     <% end %>
   </div>
 
