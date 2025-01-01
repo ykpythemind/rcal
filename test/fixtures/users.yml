@@ -3,5 +3,5 @@
 one:
   uid: user_one
 
-# two:
-#   uid: MyString
+two:
+  uid: user_two

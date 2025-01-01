@@ -1,6 +1,13 @@
 require "test_helper"
 
 class GoogleCalendars::SetupControllerTest < ActionDispatch::IntegrationTest
+  test "設定ページを開ける" do
+    login_as(users(:one))
+
+    get "/google_calendars/setup/new"
+    assert_response :success
+  end
+
   test "カレンダーを設定できる" do
     login_as(users(:one))
 

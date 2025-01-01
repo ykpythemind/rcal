@@ -10,4 +10,7 @@ class RootController < ApplicationController
 
   def privacy
   end
+
+  def howto
+  end
 end

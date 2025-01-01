@@ -1,6 +1,9 @@
 class GoogleCalendars::SetupController < ApplicationController
   before_action :require_login
 
+  def new
+  end
+
   def create
     calendar = current_user.google_calendars.find_or_initialize_by(calendar_id: params[:calendar_id])
 
