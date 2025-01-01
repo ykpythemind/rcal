@@ -23,7 +23,10 @@ class GoogleCalendarEventTest < ActiveSupport::TestCase
     [
       [ { summary: "test title" }, false ],
       [ { summary: "rtest title" }, false ],
-      [ { summary: "r test title" }, true ]
+      [ { summary: "r test title" }, true ],
+      [ { summary: "r-test title" }, true ],
+      [ { summary: "r:test title" }, true ],
+      [ { summary: "r=test title" }, true ]
     ].each do |(attributes, expected)|
       event = GoogleCalendarEvent.new(attributes)
       assert { event.reschedule_target_title? == expected }
