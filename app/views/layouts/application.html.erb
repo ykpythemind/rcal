@@ -31,7 +31,12 @@
 
         <div class="ml-auto">
           <% if current_user %>
-            <%= link_to "[#{current_user.nickname}]", "/mypage", class: "text-cyan-500 hover:text-cyan-700" %>
+            <div class="flex items-center gap-1">
+              <%= link_to "#{current_user.nickname}", "/mypage", class: "" %>
+              <a href="/mypage">
+                <%= image_tag "heroicons/configuration.svg", size: "20x20" %>
+              </a>
+            </div>
           <% else %>
             <%= form_with url: '/auth/google_oauth2', data: { turbo: false } do |f| %>
               <%= f.submit '登録/ログイン', class: "link cursor-pointer" %>
