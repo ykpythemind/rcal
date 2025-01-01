@@ -13,5 +13,8 @@ module Rcal
     config.time_zone = "Asia/Tokyo"
 
     config.x.host = ENV["HOST"] || "localhost:3000"
+
+    I18n.available_locales = %i[ja en]
+    I18n.default_locale = :ja
   end
 end

@@ -1,14 +1,16 @@
 <div>
   <h2 class="text-lg">設定</h2>
 
-  <hr>
-
   <ul class="list-disc list-inside p-2">
     <li><%= link_to "カレンダー設定", "/google_calendars", class: "link" %></li>
   </ul>
 
+  <h2 class="text-lg my-2">アカウント</h2>
+
+  <p><%= "#{current_user.nickname}" %><%= current_user.email ? "(#{current_user.email})" : nil %></p>
+
   <div class="mt-5">
-    <%= link_to "退会", "/users/delete", class: "text-red-500 hover:text-red-700" %>
+    <%= link_to "退会", "/users/delete", class: "link" %>
   </div>
 
   <div class="mt-5">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_01_141500) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_01_154844) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_01_141500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
+    t.string "email"
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
