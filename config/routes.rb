@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get "/mypage" => "mypage#index"
 
   get "/calendar_events" => "calendar_events#index"
+  delete "/notifications/:id" => "notifications#destroy"
 end

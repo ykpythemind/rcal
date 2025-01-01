@@ -1,4 +1,13 @@
-<% if current_user %>
+<%- if current_user %>
+  <%- if current_user.notifications.unread.count > 0 %>
+    <%- current_user.notifications.each do |notification| %>
+      <div class="p-2 text-white bg-red-500 rounded-lg my-4">
+        <%= notification.message %>
+        <%= button_to "閉じる", "/notifications/#{notification.id}", method: :delete, form_class: "inline link" %>
+      </div>
+    <% end %>
+  <% end %>
+
   <div style=''>
     <%= turbo_frame_tag "my-calendar-events", src: "/calendar_events", loading: :lazy %>
   </div>
