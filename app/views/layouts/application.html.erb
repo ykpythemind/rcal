@@ -18,11 +18,12 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app %>
   </head>
 
   <body>
-    <h1><a href="/">rcal</a></h1>
+    <h1 class="text-md font-bold underline"><a href="/">rcal</a></h1>
 
     <%- if flash[:alert] %>
       <div class="alert alert-danger" style="color: red;"><%= flash[:alert] %></div>
