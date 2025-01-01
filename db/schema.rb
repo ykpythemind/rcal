@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_01_133922) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_01_141500) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -58,6 +58,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_01_133922) do
     t.index ["user_id"], name: "index_google_calendars_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "message", null: false
+    t.string "notification_type", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uid", null: false
     t.datetime "created_at", null: false
@@ -70,4 +80,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_01_133922) do
   add_foreign_key "google_calendar_event_reschedules", "google_calendar_events"
   add_foreign_key "google_calendar_events", "google_calendars"
   add_foreign_key "google_calendars", "users"
+  add_foreign_key "notifications", "users"
 end
