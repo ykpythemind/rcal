@@ -1,10 +1,11 @@
 <% if current_user %>
   <div style=''>
+    <%= turbo_frame_tag "my-calendar-events", src: "/calendar_events", loading: :lazy %>
   </div>
 <% else %>
 
   <div class="">
-    <%= form_with url: '/auth/google_oauth2', local: true do |f| %>
+    <%= form_with url: '/auth/google_oauth2', local: true, data: {turbo: false}  do |f| %>
       <%= f.submit '登録/ログイン', class: "btn-primary cursor-pointer" %>
     <% end %>
   </div>

@@ -1,16 +1,20 @@
-<h2 class="text-lg mb-5">連携中カレンダー</h2>
+<h2 class="text-lg mb-5">設定中カレンダー</h2>
 
-<ul class="list-disc list-inside px-2">
-  <%- current_user.google_calendars.each do |calendar| %>
-    <li>
-      <span class="font-bold">
-        <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
-      </span>
-    </li>
-  <% end %>
-</ul>
+<%- if current_user.google_calendars.present? %>
+  <ul class="list-disc list-inside px-2">
+    <%- current_user.google_calendars.each do |calendar| %>
+      <li>
+        <span class="font-bold">
+          <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <span class="text-gray-500">カレンダーが設定されていません</span>
+<% end %>
 
-<h3 class="my-5 text-lg">連携する</h3>
+<h3 class="my-5 text-lg">新規で設定する</h3>
 
 <ul class="flex flex-col gap-3">
   <% @calendars.each do |calendar| %>

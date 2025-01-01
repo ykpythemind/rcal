@@ -4,6 +4,6 @@
 
 <div class="mt-5">
   <%= form_with url: '/users/delete', local: true do |f| %>
-    <%= f.submit '退会する', class: "text-red-500", data: { confirm: "本当に退会しますか" }  %>
+    <%= f.submit '退会する', class: "text-red-500", data: { turbo_confirm: "本当に退会しますか" }  %>
   <% end %>
 </div>

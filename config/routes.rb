@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   post "/users/delete" => "user_deletes#create"
 
   get "/mypage" => "mypage#index"
+
+  get "/calendar_events" => "calendar_events#index"
 end
