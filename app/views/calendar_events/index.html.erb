@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "my-calendar-events" do %>
+  <%- if @events.present? %>
+    <h2 class="text-lg mb-3">繰り返し中のイベント</h2>
+
+    <ul class="">
+      <% @events.each do |event| %>
+        <li class="border-b border-gray-200 last:border-0 flex py-2">
+          <div class="font-bold">
+            <%= event.summary %>
+          </div>
+
+          <div class="ml-auto text-sm text-gray-500">
+            <%= distance_of_time_in_words_to_now(event.start_at) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif current_user.google_calendars.blank? %>
+    <div>
+      <p class="text-gray-500">カレンダーが設定されていません</p>
+      <p class="mt-2">
+        <%= link_to "カレンダー設定", "/google_calendars", class: "btn-primary cursor-pointer", data: { turbo: false } %>
+      </p>
+    </div>
+  <% else %>
+    <div>
+      <p class="text-gray-500">繰り返し中のイベントがありません</p>
+    </div>
+  <% end %>
+<% end %>

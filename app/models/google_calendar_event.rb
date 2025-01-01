@@ -1,6 +1,8 @@
 class GoogleCalendarEvent < ApplicationRecord
   belongs_to :google_calendar
 
+  scope :active, -> { where(start_at: Time.current...) }
+
   MAGIC_TITLE = /^(r{1,})(\s|　)+/
 
   def reschedule_target_title?

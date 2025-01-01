@@ -1,7 +1,9 @@
-<h2>退会</h2>
+<h2 class="text-lg mb-5">退会</h2>
 
-<p>すべての設定とデータを削除します。</p>
+<p class="font-bold">すべての設定とデータを削除します。この操作は戻すことができません。</p>
 
-<%= form_with url: '/users/delete', local: true do |f| %>
-  <%= f.submit '退会する', data: { confirm: "本当に退会しますか" }  %>
-<% end %>
+<div class="mt-5">
+  <%= form_with url: '/users/delete', local: true do |f| %>
+    <%= f.submit '退会する', class: "text-red-500", data: { turbo_confirm: "本当に退会しますか" }  %>
+  <% end %>
+</div>

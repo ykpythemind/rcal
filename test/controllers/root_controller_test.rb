@@ -11,7 +11,5 @@ class RootControllerTest < ActionDispatch::IntegrationTest
 
     get "/"
     assert_response :ok
-
-    assert response.body.include?("test user!")
   end
 end

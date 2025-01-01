@@ -16,6 +16,7 @@ class GoogleCallbacksController < ApplicationController
 
     reset_session
     session[:uid] = user.uid
+    flash[:notice] = "ログインしました"
 
     redirect_to root_path
   end

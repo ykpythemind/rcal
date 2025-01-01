@@ -1,0 +1,20 @@
+<div>
+  <h2 class="text-lg">設定</h2>
+
+  <hr>
+
+  <ul class="list-disc list-inside p-2">
+    <li><%= link_to "カレンダー設定", "/google_calendars", class: "link" %></li>
+  </ul>
+
+  <div class="mt-5">
+    <%= link_to "退会", "/users/delete", class: "text-red-500 hover:text-red-700" %>
+  </div>
+
+  <div class="mt-5">
+    <%= form_with url: '/logout', local: true do |f| %>
+      <%= f.submit 'ログアウト', class: 'btn-secondary cursor-pointer' %>
+    <% end %>
+  </div>
+
+</div>

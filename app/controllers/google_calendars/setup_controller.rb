@@ -18,6 +18,7 @@ class GoogleCalendars::SetupController < ApplicationController
       calendar.refresh_watch(access_token)
     end
 
+    flash[:notice] = "カレンダーを設定しました"
     redirect_to root_path
   end
 

@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  rescue_from Google::Apis::ClientError do |e|
+    if JSON.parse(e.body).dig("error", "status") == "PERMISSION_DENIED"
+      redirect_to root_path, alert: "Googleカレンダーに対して必要な権限がありません。ログアウトしてやり直してください"
+    else
+      raise e
+    end
+  end
+
   def require_login
     unless current_user
       redirect_to root_path, alert: "You must be logged in"

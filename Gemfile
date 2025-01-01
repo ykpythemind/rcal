@@ -64,3 +64,9 @@ group :test do
   gem "webmock"
   gem "minitest-power_assert"
 end
+
+gem "tailwindcss-rails", "~> 3.1"
+
+gem "importmap-rails", "~> 2.1"
+
+gem "turbo-rails"
