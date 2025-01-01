@@ -38,9 +38,6 @@
               </a>
             </div>
           <% else %>
-            <%= form_with url: '/auth/google_oauth2', data: { turbo: false } do |f| %>
-              <%= f.submit '登録/ログイン', class: "link cursor-pointer" %>
-            <% end %>
           <% end %>
         </div>
       </div>
