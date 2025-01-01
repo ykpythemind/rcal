@@ -150,6 +150,10 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.1.0)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -420,6 +424,9 @@ GEM
     thruster (0.1.9-x86_64-linux)
     timeout (0.4.3)
     trailblazer-option (0.1.2)
+    turbo-rails (2.0.11)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -469,6 +476,7 @@ DEPENDENCIES
   debug
   google-apis-calendar_v3
   google-apis-oauth2_v2
+  importmap-rails (~> 2.1)
   jbuilder
   kamal
   minitest-power_assert
@@ -486,6 +494,7 @@ DEPENDENCIES
   sqlite3 (>= 2.1)
   tailwindcss-rails (~> 3.1)
   thruster
+  turbo-rails
   tzinfo-data
   web-console
   webmock
