@@ -1,0 +1,14 @@
+<h2 class="text-lg mb-4">カレンダー設定</h2>
+
+<div class="p-2 rounded-md border border-gray-200">
+  <div class="flex">
+    <div>
+      <%= @google_calendar.summary %>
+    </div>
+    <div class="ml-auto">
+      <%= form_with url: "/google_calendars/#{@google_calendar.calendar_id}", method: :delete do |f| %>
+        <%= f.submit '設定を削除する', class: "text-sm text-red-500 cursor-pointer", data: { turbo_confirm: "本当にrcalの設定を削除しますか？（カレンダーとイベント自体は消えません）" }  %>
+      <% end %>
+    </div>
+  </div>
+</div>

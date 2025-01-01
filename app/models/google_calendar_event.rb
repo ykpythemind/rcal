@@ -1,6 +1,6 @@
 class GoogleCalendarEvent < ApplicationRecord
   belongs_to :google_calendar
-  has_many :google_calendar_event_reschedules
+  has_many :google_calendar_event_reschedules, dependent: :destroy
 
   scope :active, -> { where(status: "confirmed", start_at: Time.current.beginning_of_day...) }
 

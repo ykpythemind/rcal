@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback" => "google_callbacks#create"
 
   get "/google_calendars" => "google_calendars#index"
+  get "/google_calendars/*calendar_id/edit" => "google_calendars#edit"
+  delete "/google_calendars/:calendar_id" => "google_calendars#destroy", calendar_id: /[^\/]+/
   post "/google_calendars/setup" => "google_calendars/setup#create"
   get "/google_calendars/setup/new" => "google_calendars/setup#new"
 

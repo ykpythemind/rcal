@@ -6,7 +6,7 @@
       <%- current_user.google_calendars.each do |calendar| %>
         <li>
           <span class="font-bold">
-            <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
+            <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}/edit", class: "link" %>
           </span>
         </li>
       <% end %>
