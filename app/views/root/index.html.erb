@@ -1,22 +1,13 @@
 <% if current_user %>
-  <div style='border-radius: 3px; border: 1px solid gray; padding: 15px;'>
-    <p>Hi, <%= current_user.nickname %>!</p>
-
-    <hr>
-
-    <ul>
-      <li><%= link_to "カレンダー一覧", "/google_calendars" %></li>
-      <li><%= link_to "退会", "/users/delete" %></li>
-    </ul>
-
-    <%= form_with url: '/logout', local: true do |f| %>
-      <%= f.submit 'Logout' %>
-    <% end %>
+  <div style=''>
   </div>
 <% else %>
-  <%= form_with url: '/auth/google_oauth2', local: true do |f| %>
-    <%= f.submit '登録/ログイン' %>
-  <% end %>
 
-  <p>※ Googleアカウントでログインすることで <a href="/terms">利用規約</a>と<a href="/privacy">プライバシーポリシー</a>に同意します</p>
+  <div class="">
+    <%= form_with url: '/auth/google_oauth2', local: true do |f| %>
+      <%= f.submit '登録/ログイン', class: "btn-primary cursor-pointer" %>
+    <% end %>
+  </div>
+
+  <p class="mt-2">※ Googleアカウントでログインすることで <a href="/terms" class="link">利用規約</a>と<a href="/privacy" class="link">プライバシーポリシー</a>に同意します</p>
 <% end %>

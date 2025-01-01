@@ -1,19 +1,23 @@
-<h3>連携中カレンダー</h3>
+<h2 class="text-lg mb-5">連携中カレンダー</h2>
 
-<ul>
+<ul class="list-disc list-inside px-2">
   <%- current_user.google_calendars.each do |calendar| %>
-    <li><%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %></li>
+    <li>
+      <span class="font-bold">
+        <%= link_to calendar.summary, "/google_calendars/#{calendar.calendar_id}" %>
+      </span>
+    </li>
   <% end %>
 </ul>
 
-<h3>連携する</h3>
+<h3 class="my-5 text-lg">連携する</h3>
 
-<ul>
+<ul class="flex flex-col gap-3">
   <% @calendars.each do |calendar| %>
-    <li>
+    <li class="">
       <%= form_with url: "/google_calendars/setup", local: true do |f| %>
         <%= f.hidden_field :calendar_id, value: calendar.id %>
-        <%= f.submit calendar.summary %>
+        <%= f.submit calendar.summary, class: "btn-secondary cursor-pointer" %>
       <% end %>
     </li>
   <% end %>

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   get "/users/delete" => "user_deletes#show"
   post "/users/delete" => "user_deletes#create"
+
+  get "/mypage" => "mypage#index"
 end
