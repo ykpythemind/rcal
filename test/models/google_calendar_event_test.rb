@@ -29,4 +29,19 @@ class GoogleCalendarEventTest < ActiveSupport::TestCase
       assert { event.reschedule_target_title? == expected }
     end
   end
+
+  test "#generate_next_summary" do
+    calendar = google_calendars(:my_calendar)
+    event = GoogleCalendarEvent.create!(google_calendar: calendar, start_at: "2021-01-01T11:00:00+09:00", end_at: "2021-01-01T13:00:00+09:00", summary: "test title", event_id: "124")
+    assert { event.generate_next_summary == "test title 🔄" }
+
+    event.google_calendar_event_reschedules.create!
+    assert { event.generate_next_summary == "test title 🔄🔄" }
+
+    event.google_calendar_event_reschedules.create!
+    assert { event.generate_next_summary == "test title 🔄🔄🔄" }
+
+    event.google_calendar_event_reschedules.create!
+    assert { event.generate_next_summary == "test title 🔄🔄🔄" }
+  end
 end
