@@ -8,7 +8,7 @@ class UserDeletesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "退会できる" do
+  test "アカウント削除できる" do
     login_as(users(:one))
 
     WebMock.disable_net_connect!

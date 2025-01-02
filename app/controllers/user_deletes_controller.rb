@@ -8,7 +8,7 @@ class UserDeletesController < ApplicationController
     current_user.destroy!
     reset_session
 
-    flash[:notice] = "退会しました"
+    flash[:notice] = "アカウントを削除しました"
     redirect_to root_path
   end
 end

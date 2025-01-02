@@ -1,9 +1,11 @@
-<h2 class="text-lg mb-5">退会</h2>
+<h2 class="text-lg mb-5">アカウント削除</h2>
 
 <p class="font-bold">すべての設定とデータを削除します。この操作は戻すことができません。</p>
 
+<p>※Googleカレンダーやrcalによって作成されたイベントは削除されません</p>
+
 <div class="mt-5">
   <%= form_with url: '/users/delete', local: true do |f| %>
-    <%= f.submit '退会する', class: "text-red-500", data: { turbo_confirm: "本当に退会しますか" }  %>
+    <%= f.submit '削除する', class: "text-red-500", data: { turbo_confirm: "本当に削除しますか" }  %>
   <% end %>
 </div>

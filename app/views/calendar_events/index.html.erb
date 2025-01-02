@@ -18,7 +18,7 @@
   <% elsif current_user.google_calendars.blank? %>
     <div>
       <p class="text-gray-500">カレンダーが設定されていません</p>
-      <p class="mt-2">
+      <p class="mt-2 ">
         <%= link_to "カレンダー設定", "/google_calendars", class: "btn-primary cursor-pointer", data: { turbo: false } %>
       </p>
     </div>
