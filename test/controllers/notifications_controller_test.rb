@@ -14,7 +14,7 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     assert { user.notifications.where(read: false).count == 1 }
 
     delete "/notifications/#{notification.id}"
-    assert_response :redirect
+    assert_response :ok
 
     assert { user.notifications.where(read: false).count == 0 }
   end

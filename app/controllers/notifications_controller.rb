@@ -4,9 +4,6 @@ class NotificationsController < ApplicationController
 
   def destroy
     @notification.mark_as_read!
-
-    # TODO: turbo frame
-    redirect_to root_path
   end
 
   private

@@ -42,6 +42,17 @@
           </div>
         </div>
 
+        <%- if current_user && current_user.notifications.unread.count > 0 %>
+          <%- current_user.notifications.unread.each do |notification| %>
+            <turbo-frame id="notification-<%= notification.id %>">
+              <div class="p-2 text-white bg-red-500 rounded-lg my-4">
+                <%= notification.message %>
+                <%= button_to "閉じる", "/notifications/#{notification.id}", method: :delete, form_class: "inline font-bold" %>
+              </div>
+            </turbo-frame>
+          <% end %>
+        <% end %>
+
         <%- if flash[:alert] %>
           <div class="p-2 text-white bg-red-500 rounded-lg my-4"><%= flash[:alert] %></div>
         <% end %>
