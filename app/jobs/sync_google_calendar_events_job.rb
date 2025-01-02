@@ -21,32 +21,7 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
 
       params.merge!(show_deleted: true, single_events: true)
 
-      events =
-        if Rails.env.test?
-          # FIXME: dirty hack for testing
-          ev = Google::Apis::CalendarV3::Events.new
-          ev.next_sync_token = "next_sync_token"
-
-          ev.items = [
-            Google::Apis::CalendarV3::Event.new.tap do |e|
-              e.id = "1"
-              e.status = "cancelled"
-              e.start = Google::Apis::CalendarV3::EventDateTime.new(date_time: Time.zone.now)
-              e.end = Google::Apis::CalendarV3::EventDateTime.new(date_time: Time.zone.now + 1.hour)
-              e.summary = "test1"
-            end,
-            Google::Apis::CalendarV3::Event.new.tap do |e|
-              e.id = "2"
-              e.status = "confirmed"
-              e.start = Google::Apis::CalendarV3::EventDateTime.new(date_time: Time.zone.local(2021, 1, 1, 0, 0, 0))
-              e.end = Google::Apis::CalendarV3::EventDateTime.new(date_time: Time.zone.local(2021, 1, 1, 1, 0, 0))
-              e.summary = "test2"
-            end
-          ]
-          ev
-        else
-          service.list_events(calendar_id, **params)
-        end
+      events = service.list_events(calendar_id, **params)
 
       calendar.update!(next_sync_token: events.next_sync_token)
 
