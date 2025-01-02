@@ -1,4 +1,16 @@
 // Add a service worker for processing Web Push notifications:
+self.addEventListener("install", function (event) {
+  console.log("Service Worker installing.");
+});
+
+self.addEventListener("activate", function (event) {
+  console.log("Service Worker activated.");
+});
+
+self.addEventListener("fetch", function (event) {
+  console.log("Fetching:", event.request.url);
+});
+
 //
 // self.addEventListener("push", async (event) => {
 //   const { title, options } = await event.data.json()
