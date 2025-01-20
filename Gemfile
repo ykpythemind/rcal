@@ -40,7 +40,7 @@ gem "omniauth-google-oauth2"
 gem "google-apis-calendar_v3", require: "google/apis/calendar_v3"
 gem "google-apis-oauth2_v2"
 
-gem "tailwindcss-rails", "~> 3.1"
+gem "tailwindcss-rails", "~> 3.3"
 gem "importmap-rails", "~> 2.1"
 gem "turbo-rails"
 gem "activerecord-session_store"
