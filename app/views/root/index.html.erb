@@ -10,5 +10,9 @@
     <% end %>
   </div>
 
-  <p class="mt-2">※ Googleアカウントでログインすることで <a href="/terms" class="link">利用規約</a>と<a href="/privacy" class="link">プライバシーポリシー</a>に同意します</p>
+  <p class="mt-2 text-sm">※ Googleアカウントでログインすることで <a href="/terms" class="link">利用規約</a>と<a href="/privacy" class="link">プライバシーポリシー</a>に同意します</p>
+
+  <div class="mt-10">
+    <%= render partial: "shared/howto", locals: { disable_heading: true } %>
+  </div>
 <% end %>

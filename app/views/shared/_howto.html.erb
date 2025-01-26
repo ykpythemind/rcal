@@ -1,0 +1,49 @@
+
+<div>
+  <%- unless disable_heading %>
+    <h2 class="font-bold mb-6"><span>rcal</span>の使い方</h2>
+  <% end %>
+
+  <div class="gap-6 flex flex-col">
+    <div class="relative rounded-xl border-gray-200 border-2 p-4">
+      <h3 class="absolute top-[-12px] bg-white  font-bold px-2">はじめに</h3>
+      <div class="mt-2 text-center mx-auto">
+        <div class="text-sm px-6">
+          rcal はズボラなタスク管理アプリとして生まれました。
+          <br />
+          Googleカレンダーと連携して簡単に使うことができます。
+          <br />
+          <br />
+          あなたがやるタスク管理方法はかんたんです。
+          <br />
+          <b>タスクをカレンダーの予定として登録して、タスクを完了したらその予定を消しましょう。</b>
+          <br />
+          rcalが予定を消すまでリスケし続けてくれます。<br />
+        </div>
+      </div>
+    </div>
+
+    <div class="relative rounded-xl border-gray-200 border-2 p-4">
+      <h3 class="absolute top-[-12px] bg-white  font-bold px-2">1. 連携するGoogleカレンダーを選択</h3>
+      <div class="mt-2 max-w-[200px] text-center mx-auto">
+        <%= image_tag "howto_1.png" %>
+      </div>
+    </div>
+
+    <div class="relative rounded-xl border-gray-200 border-2 p-4">
+      <h3 class="absolute top-[-12px] bg-white  font-bold px-2">2. rから始まるタイトルで予定を登録</h3>
+      <div class="mt-2 max-w-[300px] text-center mx-auto">
+        <%= image_tag "howto_2.jpg" %>
+      </div>
+      <div class="mt-1 text-center text-xs text-gray-400">Googleカレンダーを管理しているお好きなアプリをお使いください</div>
+    </div>
+
+    <div class="relative rounded-xl border-gray-200 border-2 p-4">
+      <h3 class="absolute top-[-12px] bg-white  font-bold px-2">3. リスケされ続ける</h3>
+      <div class="mt-2 max-w-[300px] text-center mx-auto">
+        <%= image_tag "howto_3.png" %>
+      </div>
+      <div class="mt-1 text-center text-xs text-gray-400">予定を完了したら予定を削除しましょう</div>
+    </div>
+  </div>
+</div>
