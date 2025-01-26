@@ -55,6 +55,7 @@ class GoogleCalendarEvent < ApplicationRecord
     s, e = new_schedule
 
     new_event = Google::Apis::CalendarV3::Event.new(
+      summary: summary,
       start: Google::Apis::CalendarV3::EventDateTime.new(
         date_time: s.iso8601,
         time_zone: s.time_zone.name,
