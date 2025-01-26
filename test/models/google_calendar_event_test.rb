@@ -22,7 +22,7 @@ class GoogleCalendarEventTest < ActiveSupport::TestCase
   test "#reschedule_target_title?" do
     [
       [ { summary: "test title" }, false ],
-      [ { summary: "rtest title" }, false ],
+      [ { summary: "rtest title" }, true ],
       [ { summary: "r test title" }, true ],
       [ { summary: "r-test title" }, true ],
       [ { summary: "r:test title" }, true ],
@@ -33,18 +33,12 @@ class GoogleCalendarEventTest < ActiveSupport::TestCase
     end
   end
 
-  test "#generate_next_summary" do
+  test "#generate_decorated_summary" do
     calendar = google_calendars(:my_calendar)
-    event = GoogleCalendarEvent.create!(google_calendar: calendar, start_at: "2021-01-01T11:00:00+09:00", end_at: "2021-01-01T13:00:00+09:00", summary: "test title", event_id: "124")
-    assert { event.generate_next_summary == "test title 🔄" }
+    event = GoogleCalendarEvent.create!(google_calendar: calendar, start_at: "2021-01-01T11:00:00+09:00", end_at: "2021-01-01T13:00:00+09:00", summary: "r-test title", event_id: "124")
+    assert { event.generate_decorated_summary == "r-test title 🔄" }
 
     event.google_calendar_event_reschedules.create!
-    assert { event.generate_next_summary == "test title 🔄🔄" }
-
-    event.google_calendar_event_reschedules.create!
-    assert { event.generate_next_summary == "test title 🔄🔄🔄" }
-
-    event.google_calendar_event_reschedules.create!
-    assert { event.generate_next_summary == "test title 🔄🔄🔄" }
+    assert { event.generate_decorated_summary == "r-test title 🔄" }
   end
 end

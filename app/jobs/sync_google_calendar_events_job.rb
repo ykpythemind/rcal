@@ -47,7 +47,25 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
             status: event.status,
           )
 
+          decorated_summary  = record.generate_decorated_summary
+
+          need_title_update = record.reschedule_target_title? && decorated_summary != record.summary
+          if need_title_update
+            # 初めて同期するとき
+            record.summary = decorated_summary
+          end
+
           record.save!
+
+          if need_title_update
+            new_event = Google::Apis::CalendarV3::Event.new(summary: record.summary)
+
+            service.patch_event(
+              calendar_id,
+              record.event_id,
+              new_event
+            )
+          end
         end
       end
     end

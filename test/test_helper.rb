@@ -26,6 +26,7 @@ module ActiveSupport
         uid: user.uid,
         credentials: {
           token: "test_token",
+          scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
           refresh_token: "test_refresh_token",
           expires_at: Time.zone.parse("2030-01-01 00:00:00").to_i
         },

@@ -4,7 +4,7 @@ class GoogleCalendarEvent < ApplicationRecord
 
   scope :active, -> { where(status: "confirmed", start_at: Time.current.beginning_of_day...) }
 
-  MAGIC_TITLE = /^(r{1,})(\s|　|-|:|\+|=)+/
+  MAGIC_TITLE = /^r/
   REPEAT_MARK = "🔄"
 
   def reschedule_target_title?
@@ -35,21 +35,14 @@ class GoogleCalendarEvent < ApplicationRecord
     [ will_start_at, will_end_at ]
   end
 
-  def generate_next_summary
-    next_count = google_calendar_event_reschedules.count + 1
-
+  def generate_decorated_summary
     s = summary.gsub(/(🔄+)$/, "").strip # 繰り返しマークを消しておく
 
-    # 雑ロジック...
-    if next_count == 1
-      mark_count = 1
-    elsif next_count == 2
-      mark_count = 2
+    if reschedule_target_title?
+      "#{s} #{REPEAT_MARK}"
     else
-      mark_count = 3
+      s
     end
-
-    "#{s} #{REPEAT_MARK * mark_count}"
   end
 
   def reschedule
@@ -60,10 +53,8 @@ class GoogleCalendarEvent < ApplicationRecord
     service.authorization = access_token
 
     s, e = new_schedule
-    next_summary = generate_next_summary
 
     new_event = Google::Apis::CalendarV3::Event.new(
-      summary: next_summary,
       start: Google::Apis::CalendarV3::EventDateTime.new(
         date_time: s.iso8601,
         time_zone: s.time_zone.name,
@@ -81,7 +72,7 @@ class GoogleCalendarEvent < ApplicationRecord
     )
 
     transaction do
-      update!(start_at: s, end_at: e, summary: next_summary)
+      update!(start_at: s, end_at: e)
       google_calendar_event_reschedules.create!
     end
   end

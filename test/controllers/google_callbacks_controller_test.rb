@@ -11,6 +11,7 @@ class GoogleCallbacksControllerTest < ActionDispatch::IntegrationTest
       },
       credentials: {
         token: "test_token",
+        scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
         refresh_token: "test_refresh_token",
         expires_at: 1234567890
       }
