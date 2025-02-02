@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_03_110640) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_02_162259) do
   create_table "google_access_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "access_token", null: false
@@ -31,10 +31,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_110640) do
   create_table "google_calendar_events", force: :cascade do |t|
     t.integer "google_calendar_id", null: false
     t.string "event_id", null: false
-    t.string "summary", null: false
+    t.string "summary", limit: 1020
     t.datetime "start_at", null: false
     t.datetime "end_at", null: false
-    t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
@@ -82,7 +81,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_110640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
-    t.string "email"
+    t.string "email", limit: 510
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
