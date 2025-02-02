@@ -4,6 +4,8 @@ class GoogleCalendarEvent < ApplicationRecord
 
   scope :active, -> { where(status: "confirmed", start_at: Time.current.beginning_of_day...) }
 
+  encrypts :summary
+
   MAGIC_TITLE = /^r/
   REPEAT_MARK = "🔄"
 
