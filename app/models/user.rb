@@ -3,4 +3,6 @@ class User < ApplicationRecord
 
   has_many :google_calendars, dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  encrypts :email, deterministic: true
 end

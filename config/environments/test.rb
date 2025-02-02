@@ -52,4 +52,8 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.x.host = "example.com"
+
+  config.active_record.encryption.primary_key = "dummy_encryption_key"
+  config.active_record.encryption.deterministic_key = "dummy_encryption_key_for_deterministic_encryption"
+  config.active_record.encryption.key_derivation_salt = "dummy_encryption_key_derivation_salt"
 end

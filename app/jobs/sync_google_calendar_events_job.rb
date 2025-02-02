@@ -43,7 +43,6 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
             start_at: event.start.date_time,
             end_at: event.end.date_time,
             summary: event.summary,
-            data: event.to_h,
             status: event.status,
           )
 
