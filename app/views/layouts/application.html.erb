@@ -31,14 +31,18 @@
           <h1 class="text-md font-bold underline hover:text-cyan-500"><a href="/">rcal</a></h1>
 
           <div class="ml-auto">
-            <% if current_user %>
-              <div class="flex items-center gap-1">
-                <a href="/mypage">
-                  <%= image_tag "heroicons/configuration.svg", size: "24x24" %>
-                </a>
-              </div>
-            <% else %>
-            <% end %>
+            <div class="flex items-center gap-2">
+              <a href="/howto">
+                <%= image_tag "heroicons/question.svg", size: "24x24" %>
+              </a>
+
+              <% if current_user %>
+                  <a href="/mypage">
+                    <%= image_tag "heroicons/configuration.svg", size: "24x24" %>
+                  </a>
+              <% else %>
+              <% end %>
+            </div>
           </div>
         </div>
 
@@ -70,7 +74,7 @@
         <ul class="flex justify-center gap-2 mt-1">
           <li><a href="/terms" class="link">利用規約</a> </li>
           <li><a href="/privacy" class="link">プライバシーポリシー</a> </li>
-          <li><a href="/howto" class="link">使い方</a> </li>
+          <li><a href="https://github.com/ykpythemind/rcal" class="link" target="_blank">ソースコード</a> </li>
         </ul>
       </footer>
     </main>
