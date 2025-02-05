@@ -365,7 +365,7 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    solid_cable (3.0.5)
+    solid_cable (3.0.7)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)
@@ -436,7 +436,8 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.7.1)
