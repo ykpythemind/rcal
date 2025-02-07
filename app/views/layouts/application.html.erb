@@ -14,7 +14,6 @@
     <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
@@ -27,8 +26,11 @@
     <main class="max-w-lg mx-auto p-4 min-h-screen flex flex-col">
       <div class="sm:flex-grow-0 flex-grow">
 
-        <div class="flex">
-          <h1 class="text-md font-bold underline hover:text-cyan-500"><a href="/">rcal</a></h1>
+        <div class="flex items-center">
+          <h1 class=""><a href="/">
+            <%= image_tag "rcal_logo.png", width: "55", height: "28" %>
+
+          </a></h1>
 
           <div class="ml-auto">
             <div class="flex items-center gap-2">
