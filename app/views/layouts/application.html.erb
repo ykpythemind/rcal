@@ -26,7 +26,7 @@
     <main class="max-w-lg mx-auto p-4 min-h-screen flex flex-col">
       <div class="sm:flex-grow-0 flex-grow">
 
-        <div class="flex items-center">
+        <div class="mt-0 flex items-center">
           <h1 class=""><a href="/">
             <%= image_tag "rcal_logo.png", width: "55", height: "28" %>
 
@@ -67,7 +67,7 @@
           <div class="p-2 text-white bg-cyan-500 rounded-lg my-4"><%= flash[:notice] %></div>
         <% end %>
 
-        <div class="my-4">
+        <div class="my-5">
           <%= yield %>
         </div>
       </div>

@@ -16,13 +16,13 @@
   <% end %>
 
   <div class="mt-5 text-center">
-    <a href="/google_calendars/setup/new" class="btn-primary cursor-pointer">新しく設定する</a>
+    <a href="/google_calendars/setup/new" class="btn-primary cursor-pointer text-sm">新しく設定する</a>
   </div>
 
   <h2 class="text-lg mb-2 mt-5">アカウント</h2>
 
-  <div class="flex">
-    <div><%= "#{current_user.nickname}" %><%= current_user.email ? "(#{current_user.email})" : nil %></div>
+  <div class="flex items-center">
+    <div class="text-sm"><%= "#{current_user.nickname}" %><%= current_user.email ? "(#{current_user.email})" : nil %></div>
 
     <div class="ml-auto">
       <%= link_to "アカウントを削除", "/users/delete", class: "link text-sm" %>
@@ -32,7 +32,7 @@
 
   <div class="mt-5 text-center">
     <%= form_with url: '/logout', local: true do |f| %>
-      <%= f.submit 'ログアウト', class: 'btn-secondary cursor-pointer', data: { turbo_confirm: "ログアウトしますか？" } %>
+      <%= f.submit 'ログアウト', class: 'btn-secondary cursor-pointer text-sm', data: { turbo_confirm: "ログアウトしますか？" } %>
     <% end %>
   </div>
 
