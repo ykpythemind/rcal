@@ -6,7 +6,7 @@
       <% @events.each do |event| %>
         <li class="border-b border-gray-200 last:border-0 flex py-2 <%= event.start_at.past? && "opacity-40" %>">
           <div class="font-bold">
-            <%= event.summary %>
+            <%= event.web_summary %>
           </div>
 
           <div class="ml-auto text-sm text-gray-500 ">

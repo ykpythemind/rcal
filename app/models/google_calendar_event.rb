@@ -47,6 +47,10 @@ class GoogleCalendarEvent < ApplicationRecord
     end
   end
 
+  def web_summary
+    summary.gsub(/(🔄+)$/, "").strip # 繰り返しマークを消して表示
+  end
+
   def reschedule
     access_token = google_calendar.user.google_access_token&.prepare
     raise "No access token" unless access_token
