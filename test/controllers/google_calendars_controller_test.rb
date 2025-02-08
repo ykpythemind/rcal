@@ -51,7 +51,7 @@ class GoogleCalendarsControllerTest < ActionDispatch::IntegrationTest
 
     stub_request(:post, "https://www.googleapis.com/calendar/v3/channels/stop").
     with(
-      body: { "id" => "first_time_channel_id", "resourceId" => nil }.to_json
+      body: { "id" => "first_time_channel_id", "resourceId" => nil, "token" => "dummy1" }.to_json
     ).
     to_return(status: 200, body: "", headers: {})
 

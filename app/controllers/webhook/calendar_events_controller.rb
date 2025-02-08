@@ -9,6 +9,12 @@ class Webhook::CalendarEventsController < ApplicationController
 
     calendar = GoogleCalendar.find_by(channel_id: channel_id)
     if calendar
+      if request.headers["X-Goog-Channel-Token"] != calendar.calendar_token
+        Rails.logger.warn("Invalid token")
+        head :bad_request
+        return
+      end
+
       SyncGoogleCalendarEventsJob.perform_later(calendar)
       head :ok
     else

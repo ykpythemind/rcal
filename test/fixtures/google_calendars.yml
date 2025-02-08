@@ -7,6 +7,7 @@ first_time_calendar:
   next_sync_token:
   expires_at: 2030-12-01 00:00:00
   calendar_id: dummy_calendar_id
+  calendar_token: dummy1
 
 my_calendar:
   channel_id: calendar_2
@@ -14,3 +15,4 @@ my_calendar:
   next_sync_token: token
   expires_at: 2030-12-01 00:00:00
   calendar_id: dummy_calendar_id2
+  calendar_token: dummy2

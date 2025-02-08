@@ -10,8 +10,13 @@ class GoogleCalendar < ApplicationRecord
     service.authorization = access_token
 
     self.channel_id = SecureRandom.uuid
+    self.calendar_token ||= SecureRandom.uuid
+
     channel_param = Google::Apis::CalendarV3::Channel.new(
-      id: self.channel_id, type: "web_hook", address: webhook_calendar_events_url
+      id: self.channel_id,
+      type: "web_hook",
+      address: webhook_calendar_events_url,
+      token: self.calendar_token
     )
 
     ret = service.watch_event(calendar_id, channel_param, show_deleted: true)
@@ -47,7 +52,11 @@ class GoogleCalendar < ApplicationRecord
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = token
 
-    chan = Google::Apis::CalendarV3::Channel.new(id: channel_id, resource_id: channel_resource_id)
+    chan = Google::Apis::CalendarV3::Channel.new(
+      id: channel_id,
+      resource_id: channel_resource_id,
+      token: calendar_token
+    )
 
     begin
       service.stop_channel(chan)
