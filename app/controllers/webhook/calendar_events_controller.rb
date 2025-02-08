@@ -2,8 +2,9 @@ class Webhook::CalendarEventsController < ApplicationController
   skip_forgery_protection
 
   def create
-    puts params
     channel_id = request.headers["X-Goog-Channel-ID"]
+
+    # ⇣このリクエストがどのリソースに関連しているかを知るための情報。これは無視してよいようだ
     # channel_resource_id = request.headers["X-Goog-Resource-ID"]
 
     calendar = GoogleCalendar.find_by(channel_id: channel_id)
