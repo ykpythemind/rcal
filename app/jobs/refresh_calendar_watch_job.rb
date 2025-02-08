@@ -1,3 +1,4 @@
+# カレンダーのwebhookの通知チャネルを定期更新する必要がある
 class RefreshCalendarWatchJob < ApplicationJob
   def perform(calendar)
     access_token = calendar.user.google_access_token&.prepare
