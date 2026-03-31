@@ -1,6 +1,6 @@
 service: rcal
 
-image: yukibukiyou/rcal
+image: rcal
 
 servers:
   web:
@@ -12,10 +12,7 @@ proxy:
     - rcal.ykpythemind.com
 
 registry:
-  username: yukibukiyou
-
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  server: localhost:4443
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
