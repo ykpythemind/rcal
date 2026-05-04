@@ -38,6 +38,9 @@ class SyncGoogleCalendarEventsJob < ApplicationJob
           else
             # ignore
           end
+        elsif event.start&.date_time.nil? || event.end&.date_time.nil?
+          # 終日イベント (birthday等含む) は date のみで date_time が無いためスキップ
+          next
         else
           record.assign_attributes(
             start_at: event.start.date_time,
